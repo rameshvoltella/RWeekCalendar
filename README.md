@@ -6,14 +6,23 @@ This is a sample application with displays calender as weekview, each week of th
 RWeekCalender: how to use
 ------------------------
 
+1. Set FrameImageAnimator view in xml
+  
+   ```xml
+       <com.imageframeanimation.FrameImageAnimator
+        android:id="@+id/animater_IV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/frame_000" />
+```
 
 
-1. Intialize RWeekCalender
+2. Intialize RWeekCalender
   
     ```java
      RWeekCalender rCaldroidFragment=new RWeekCalender();
 ```
-2. Setting RWeekCalender
+3. Setting RWeekCalender in your view
   
     ```java
 
@@ -22,7 +31,7 @@ RWeekCalender: how to use
        t.commit();
 ```
 
-3. Adding Custumizable Attributes(Add this Before Setting RWeekCalender)
+4. Adding Custumizable Attributes(Add this Before Setting RWeekCalender)
   
     ```java
      Bundle args = new Bundle();

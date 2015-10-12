@@ -7,27 +7,50 @@ RWeekCalender: how to use
 ------------------------
 
 
-1. Set Hash Tag Handler
+
+1. Intialize RWeekCalender
   
     ```java
-       TagSelectingTextview mTagSelectingTextview=new TagSelectingTextview();
+     RWeekCalender rCaldroidFragment=new RWeekCalender();
+```
+2. Setting RWeekCalender in your view
+  
+    ```java
+
+       FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+       t.replace(R.id.container, rCaldroidFragment);
+       t.commit();
 ```
 
-2. Set data containing hash tag to the text view as following
+3. Adding Custumizable Attributes(Add this Before Setting RWeekCalender)
   
     ```java
-     mHashTagTextView = (TextView) findViewById(R.id.hashtag_textview);
-     mHashTagTextView.setMovementMethod(LinkMovementMethod.getInstance());
-     	mHashTagTextView.setText(mTagSelectingTextview.addClickablePart(
-testText, this, mHyperlinkStatus, hashTagColor),
-BufferType.SPANNABLE);
-```
-3. For setting data form html content
- 
-    ```java
-  mHashTagTextView.setText(mTagSelectingTextview.addClickablePart(
-                        Html.fromHtml(testText).toString(), this, mhyperlickStatus, hashtagColor),
-				BufferType.SPANNABLE);
+     Bundle args = new Bundle();
+
+       /*Should add this attribute if you adding  the NOW_BACKGROUND or DATE_SELECTOR_BACKGROUND Attribute*/
+       args.putString(RWeekCalender.PACKAGENAME,getApplicationContext().getPackageName());
+
+       /* IMPORTANT: Customization for the calender commenting or un commenting any of the attribute below will reflect change in calender*/
+
+//---------------------------------------------------------------------------------------------------------------------//
+
+      args.putInt(RWeekCalender.CALENDER_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to calender
+
+      args.putString(RWeekCalender.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
+
+      args.putInt(RWeekCalender.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
+
+      args.putString(RWeekCalender.NOW_BACKGROUND,"bg_now");//set background to nowView
+
+      args.putInt(RWeekCalender.CURRENT_DATE_BACKGROUND,ContextCompat.getColor(this,R.color.md_black_1000));//set color to the currentdate
+
+      args.putInt(RWeekCalender.PRIMARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_white_1000));//Set color to the primary views (Month name and dates)
+
+      args.putInt(RWeekCalender.SECONDARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_green_500));//Set color to the secondary views (now view and week names)
+
+//---------------------------------------------------------------------------------------------------------------------//
+
+       rCaldroidFragment.setArguments(args);
 ```				
 				
 
