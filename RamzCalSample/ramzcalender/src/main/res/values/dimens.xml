@@ -1,0 +1,4 @@
+<resources>
+
+    <dimen name="weekview_height">60dp</dimen>
+</resources>

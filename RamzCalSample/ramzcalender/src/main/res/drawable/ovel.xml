@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- my firt item with 4 corners radius(8dp)
+     -->
+    <item>
+        <shape>
+            <solid
+                android:angle="270.0"
+                android:color="#3D689A" />
+
+            <corners android:topLeftRadius="8dp" />
+        </shape>
+    </item>
+    <!-- my second item is on top right for a fake corner radius(0dp)
+     -->
+    <item
+        android:bottom="30dp"
+        android:left="50dp">
+        <shape>
+            <solid android:color="#5C83AF" />
+        </shape>
+    </item>
+    <!-- my third item is on bottom left for a fake corner radius(0dp)
+     -->
+    <item
+        android:right="50dp"
+        android:top="30dp">
+        <shape>
+            <solid android:color="#5C83AF" />
+        </shape>
+    </item>
+
+</layer-list>
