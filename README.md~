@@ -3,17 +3,21 @@ RWeekCalender-Android
 
 This is a sample application with displays calender as weekview, each week of the month is displayed.
 
+
+##Download: 
+Here: [<img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png"/>][1]
+
 RWeekCalender: how to use
 ------------------------
 
-1. Set FrameImageAnimator view in xml
+1. Set Container view in xml
   
    ```xml
-       <com.imageframeanimation.FrameImageAnimator
-        android:id="@+id/animater_IV"
-        android:layout_width="wrap_content"
+       <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/frame_000" />
+        android:orientation="vertical"
+        android:id="@+id/container"></LinearLayout>
 ```
 
 
@@ -99,6 +103,8 @@ Some Screenshots are given below
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
+
+[1]: https://play.google.com/store/apps/details?id=com.ramzcalender.sample
 
 
 

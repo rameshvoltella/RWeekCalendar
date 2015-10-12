@@ -3,6 +3,14 @@ RWeekCalender-Android
 
 This is a sample application with displays calender as weekview, each week of the month is displayed.
 
+
+##Download: 
+Here: [<img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png"/>][1]
+
+##Video
+
+[![Video](https://img.youtube.com/vi/gNlkxo7MfNs/0.jpg)](https://www.youtube.com/watch?v=gNlkxo7MfNs)
+
 RWeekCalender: how to use
 ------------------------
 
@@ -99,6 +107,8 @@ Some Screenshots are given below
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
+
+[1]: https://play.google.com/store/apps/details?id=com.ramzcalender.sample
 
 
 
