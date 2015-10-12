@@ -6,14 +6,14 @@ This is a sample application with displays calender as weekview, each week of th
 RWeekCalender: how to use
 ------------------------
 
-1. Set FrameImageAnimator view in xml
+1. Set Container view in xml
   
    ```xml
-       <com.imageframeanimation.FrameImageAnimator
-        android:id="@+id/animater_IV"
-        android:layout_width="wrap_content"
+       <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/frame_000" />
+        android:orientation="vertical"
+        android:id="@+id/container"></LinearLayout>
 ```
 
 
