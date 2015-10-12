@@ -1,33 +1,56 @@
-Hash-Tags-Android
+RWeekCalender-Android
 =================
 
-This is a sample of handling hash tags that contain in a text,the tags are clickable and user can do specifc actions for the corresponding hash tags.In this example we can change color and also can give underline to hash tags  according to the usecase.
+This is a sample application with displays calender as weekview, each week of the month is displayed.
 
-Hash-Tags: how to use
+RWeekCalender: how to use
 ------------------------
 
 
-1. Set Hash Tag Handler
+
+1. Intialize RWeekCalender
   
     ```java
-       TagSelectingTextview mTagSelectingTextview=new TagSelectingTextview();
+     RWeekCalender rCaldroidFragment=new RWeekCalender();
+```
+2. Setting RWeekCalender
+  
+    ```java
+
+       FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+       t.replace(R.id.container, rCaldroidFragment);
+       t.commit();
 ```
 
-2. Set data containing hash tag to the text view as following
+3. Adding Custumizable Attributes(Add this Before Setting RWeekCalender)
   
     ```java
-     mHashTagTextView = (TextView) findViewById(R.id.hashtag_textview);
-     mHashTagTextView.setMovementMethod(LinkMovementMethod.getInstance());
-     	mHashTagTextView.setText(mTagSelectingTextview.addClickablePart(
-testText, this, mHyperlinkStatus, hashTagColor),
-BufferType.SPANNABLE);
-```
-3. For setting data form html content
- 
-    ```java
-  mHashTagTextView.setText(mTagSelectingTextview.addClickablePart(
-                        Html.fromHtml(testText).toString(), this, mhyperlickStatus, hashtagColor),
-				BufferType.SPANNABLE);
+     Bundle args = new Bundle();
+
+       /*Should add this attribute if you adding  the NOW_BACKGROUND or DATE_SELECTOR_BACKGROUND Attribute*/
+       args.putString(RWeekCalender.PACKAGENAME,getApplicationContext().getPackageName());
+
+       /* IMPORTANT: Customization for the calender commenting or un commenting any of the attribute below will reflect change in calender*/
+
+//---------------------------------------------------------------------------------------------------------------------//
+
+      args.putInt(RWeekCalender.CALENDER_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to calender
+
+      args.putString(RWeekCalender.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
+
+      args.putInt(RWeekCalender.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
+
+      args.putString(RWeekCalender.NOW_BACKGROUND,"bg_now");//set background to nowView
+
+      args.putInt(RWeekCalender.CURRENT_DATE_BACKGROUND,ContextCompat.getColor(this,R.color.md_black_1000));//set color to the currentdate
+
+      args.putInt(RWeekCalender.PRIMARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_white_1000));//Set color to the primary views (Month name and dates)
+
+      args.putInt(RWeekCalender.SECONDARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_green_500));//Set color to the secondary views (now view and week names)
+
+//---------------------------------------------------------------------------------------------------------------------//
+
+       rCaldroidFragment.setArguments(args);
 ```				
 				
 
@@ -35,31 +58,19 @@ BufferType.SPANNABLE);
    
 Some Screenshots are given below
 <p><b>1.Screen one </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-20-41-05.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-20-41-05.png" alt="Screenshot one" style="max-width:100%;"></a></p>
+<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s1.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s1.png" alt="Screenshot one" style="max-width:100%;"></a></p>
 
-<p><b>2.HashTag with different color </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-20-41-13.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-20-41-13.png" alt="Screenshot two" style="max-width:100%;"></a></p>
-
-
-<p><b>3.HashTag like a hyperLink </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-20-41-27.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-20-41-27.png" alt="Screenshot With UnderLine" style="max-width:100%;"></a></p>
+<p><b>2.Screen one </b></p>
+<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s2.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s2.png" alt="Screenshot two" style="max-width:100%;"></a></p>
 
 
-<p><b>4.HashTag clicked </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-22-32-27.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-22-32-27.png" alt="Hast Tag Clicked" style="max-width:100%;"></a></p>
 
-
-<p><b>5.HashTag in a ListView </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-23-06-04.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/Hash-Tags-Android/master/Screenshot_2014-07-23-23-06-04.png" alt="Hast Tag in ListView" style="max-width:100%;"></a></p>
-
-
-## VIDEO ([SAMPLE](https://www.youtube.com/watch?v=Bp7aiqxKhv0&feature=youtu.be)) 
 
 ## License
 
     The MIT License (MIT)
 
-    Copyright (c) 2014 Ramesh M Nair
+    Copyright (c) 2015 Ramesh M Nair
  
      Permission is hereby granted, free of charge, to any person obtaining a copy
      of this software and associated documentation files (the "Software"), to deal
