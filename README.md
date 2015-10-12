@@ -5,7 +5,8 @@ This is a sample application with displays calender as weekview, each week of th
 
 
 ##Download: 
-Here: [<img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png"/>][1]
+
+[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalender.sample)
 
 ##Video
 
@@ -108,7 +109,7 @@ Some Screenshots are given below
     SOFTWARE.
 
 
-[1]: https://play.google.com/store/apps/details?id=com.ramzcalender.sample
+ 
 
 
 
