@@ -8,8 +8,8 @@ android {
         applicationId "com.ramzcalender.sample"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.01"
+        versionCode 3
+        versionName "1.02"
     }
     buildTypes {
         release {

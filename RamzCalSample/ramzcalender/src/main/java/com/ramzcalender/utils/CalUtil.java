@@ -44,12 +44,13 @@ public class CalUtil {
      * @param dayName
      */
     public static int mDateGap(String dayName) {
+        Log.d("dayname",dayName);
 
         if (dayName.equals("mon")) {
             return 1;
         } else if (dayName.equals("tue")) {
             return 2;
-        } else if (dayName.equals("wen")) {
+        } else if (dayName.equals("wed")) {
             return 3;
         } else if (dayName.equals("thu")) {
             return 4;
