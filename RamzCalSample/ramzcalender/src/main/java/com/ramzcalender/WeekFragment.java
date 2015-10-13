@@ -96,13 +96,13 @@ public class WeekFragment extends Fragment {
 
         Resources resources = getActivity().getResources();
 
-        selectorDateIndicatorValue = resources.getIdentifier(getArguments().getString(RWeekCalender.DATE_SELECTOR_BACKGROUND), "drawable",
-                RWeekCalender.PAKAGENAMEVALUE);
+        selectorDateIndicatorValue = resources.getIdentifier(getArguments().getString(RWeekCalendar.DATE_SELECTOR_BACKGROUND), "drawable",
+                RWeekCalendar.PAKAGENAMEVALUE);
 
-        currentDateIndicatorValue=getArguments().getInt(RWeekCalender.CURRENT_DATE_BACKGROUND);
+        currentDateIndicatorValue=getArguments().getInt(RWeekCalendar.CURRENT_DATE_BACKGROUND);
 
 
-        datePosition=getArguments().getInt(RWeekCalender.POSITIONKEY);
+        datePosition=getArguments().getInt(RWeekCalendar.POSITIONKEY);
         int addDays=datePosition*7;
 
         startDate = startDate.plusDays(addDays);//Adding the 7days to the previous week
@@ -142,13 +142,13 @@ public class WeekFragment extends Fragment {
 
         /*Setting color in the week views*/
 
-        sundayTV.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
-        mondayTv.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
-        tuesdayTv.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
-        wednesdayTv.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
-        thursdayTv.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
-        fridayTv.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
-        saturdayTv.setTextColor(getArguments().getInt(RWeekCalender.PRIMARY_BACKGROUND));
+        sundayTV.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
+        mondayTv.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
+        tuesdayTv.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
+        wednesdayTv.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
+        thursdayTv.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
+        fridayTv.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
+        saturdayTv.setTextColor(getArguments().getInt(RWeekCalendar.PRIMARY_BACKGROUND));
 
         /*Displaying the days in the week views*/
 
@@ -294,10 +294,10 @@ public class WeekFragment extends Fragment {
         WeekFragment f = new WeekFragment();
         Bundle b = new Bundle();
 
-        b.putInt(RWeekCalender.POSITIONKEY, position);
-        b.putString(RWeekCalender.DATE_SELECTOR_BACKGROUND, selectorDateIndicatorValue);
-        b.putInt(RWeekCalender.CURRENT_DATE_BACKGROUND, currentDateIndicatorValue);
-        b.putInt(RWeekCalender.PRIMARY_BACKGROUND, primaryTextColor);
+        b.putInt(RWeekCalendar.POSITIONKEY, position);
+        b.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND, selectorDateIndicatorValue);
+        b.putInt(RWeekCalendar.CURRENT_DATE_BACKGROUND, currentDateIndicatorValue);
+        b.putInt(RWeekCalendar.PRIMARY_BACKGROUND, primaryTextColor);
         f.setArguments(b);
 
         return f;
@@ -309,7 +309,7 @@ public class WeekFragment extends Fragment {
      */
     public void mSelectedDateInfo(int position)
     {
-        RWeekCalender.getInstance().getSelectedDate(dateInWeekArray.get(position));
+        RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(position));
 
         mSelectedDate=dateInWeekArray.get(position);
 
@@ -352,7 +352,7 @@ public class WeekFragment extends Fragment {
         if (isVisibleToUser) {
 
             if(dateInWeekArray.size()>0)
-            RWeekCalender.getInstance().getSelectedDate(dateInWeekArray.get(0));
+            RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(0));
 
         }
 

@@ -46,7 +46,7 @@ import java.util.Calendar;
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-public class RWeekCalender extends Fragment {
+public class RWeekCalendar extends Fragment {
 
 
     //Declaring Variables
@@ -60,7 +60,7 @@ public class RWeekCalender extends Fragment {
     //Calender listener
     CalenderListener calenderListener;
 
-    private static RWeekCalender mInstance;
+    private static RWeekCalendar mInstance;
     CalenderAdaptor mAdaptor;
 
     //Bundle Keys
@@ -182,7 +182,7 @@ public class RWeekCalender extends Fragment {
         if (getArguments().containsKey(NOW_BACKGROUND)) {
 
             Resources resources = getResources();
-            nowView.setBackgroundResource(resources.getIdentifier(getArguments().getString(RWeekCalender.NOW_BACKGROUND), "drawable",
+            nowView.setBackgroundResource(resources.getIdentifier(getArguments().getString(RWeekCalendar.NOW_BACKGROUND), "drawable",
                     PAKAGENAMEVALUE));
 
         }
@@ -357,7 +357,7 @@ public class RWeekCalender extends Fragment {
     /**
      * creating instance of the calender class
      */
-    public static synchronized RWeekCalender getInstance() {
+    public static synchronized RWeekCalendar getInstance() {
         return mInstance;
     }
 /*

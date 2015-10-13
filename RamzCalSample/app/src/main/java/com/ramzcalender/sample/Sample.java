@@ -3,12 +3,11 @@ package com.ramzcalender.sample;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.android.datetimepicker.date.DatePickerDialog;
-import com.ramzcalender.RWeekCalender;
+import com.ramzcalender.RWeekCalendar;
 import com.ramzcalender.listener.CalenderListener;
 
 import org.joda.time.LocalDateTime;
@@ -39,7 +38,7 @@ See the License for the specific language governing permissions and
 limitations under the License.*/
 
 public class Sample extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
-    RWeekCalender rCaldroidFragment;
+    RWeekCalendar rCalendarFragment;
     TextView mDateSelectedTv;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,12 +47,12 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
         mDateSelectedTv=(TextView)findViewById(R.id.txt_date);
 
-        rCaldroidFragment=new RWeekCalender();
+        rCalendarFragment=new RWeekCalendar();
 
         Bundle args = new Bundle();
 
        /*Should add this attribute if you adding  the NOW_BACKGROUND or DATE_SELECTOR_BACKGROUND Attribute*/
-        args.putString(RWeekCalender.PACKAGENAME,getApplicationContext().getPackageName());
+        args.putString(RWeekCalendar.PACKAGENAME,getApplicationContext().getPackageName());
 
        /* IMPORTANT: Customization for the calender commenting or un commenting any of the attribute below will reflect change in calender*/
 
@@ -61,9 +60,9 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
 //      args.putInt(RWeekCalender.CALENDER_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to calender
 
-        args.putString(RWeekCalender.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
+        args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
 
-        args.putInt(RWeekCalender.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
+        args.putInt(RWeekCalendar.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
 
 //        args.putString(RWeekCalender.NOW_BACKGROUND,"bg_now");//set background to nowView
 
@@ -75,11 +74,11 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
 //---------------------------------------------------------------------------------------------------------------------//
 
-        rCaldroidFragment.setArguments(args);
+        rCalendarFragment.setArguments(args);
 
         // Attach to the activity
         FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-        t.replace(R.id.container, rCaldroidFragment);
+        t.replace(R.id.container, rCalendarFragment);
         t.commit();
 
         CalenderListener listener=new CalenderListener() {
@@ -103,7 +102,7 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
         };
 
         //setting the listener
-        rCaldroidFragment.setCalenderListener(listener);
+        rCalendarFragment.setCalenderListener(listener);
 
     }
 
@@ -116,7 +115,7 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
         Calendar calendar = Calendar.getInstance();
 
         calendar.set(year, monthOfYear, dayOfMonth);
-        rCaldroidFragment.setDateWeek(calendar);//Sets the selected date from Picker
+        rCalendarFragment.setDateWeek(calendar);//Sets the selected date from Picker
 
 
     }
