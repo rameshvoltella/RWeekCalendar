@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -296,14 +297,16 @@ public class RWeekCalendar extends Fragment {
 
         int nextPage = Weeks.weeksBetween(mStartDate, ldt).getWeeks();
 
-        if (nextPage >= 0) {
+
+        if (nextPage >= 0&&nextPage<weekCount) {
 
             pager.setCurrentItem(nextPage);
+            calenderListener.onSelectDate(ldt);
+            WeekFragment fragment = (WeekFragment) pager.getAdapter().instantiateItem(pager, nextPage);
+            fragment.ChangeSelector(ldt);
         }
 
-        calenderListener.onSelectDate(ldt);
-        WeekFragment fragment = (WeekFragment) pager.getAdapter().instantiateItem(pager, nextPage);
-        fragment.ChangeSelector(ldt);
+
 
 
     }
