@@ -5,7 +5,8 @@ This is a sample application with displays calender as weekview, each week of th
 
 
 ##Download: 
-Here: [<img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png"/>][1]
+
+[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalender.sample)
 
 ##Video
 
@@ -69,6 +70,45 @@ RWeekCalender: how to use
 
        rCaldroidFragment.setArguments(args);
 ```				
+
+5. Setting listener of the calender
+  
+    ```java
+
+      CalenderListener listener=new CalenderListener() {
+            @Override
+           public void onSelectPicker() {
+
+           //Allow user to show picker you can use custum picker or any othe picker library
+
+         
+
+
+            }
+
+            @Override
+            public void onSelectDate(LocalDateTime mSelectedDate) {
+
+                //callback when a date is selcted
+
+
+            }
+        };
+
+        //setting the listener
+        rCaldroidFragment.setCalenderListener(listener);
+```
+
+6. After Date selected from Picker
+  
+    ```java
+
+        //IMPORTANT: get the year,month and date from picker you using and call setDateWeek method
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(year, monthOfYear, dayOfMonth);
+        rCaldroidFragment.setDateWeek(calendar);//Should call setDateWeek after getting date
+```
 				
 
     
@@ -108,7 +148,7 @@ Some Screenshots are given below
     SOFTWARE.
 
 
-[1]: https://play.google.com/store/apps/details?id=com.ramzcalender.sample
+ 
 
 
 
