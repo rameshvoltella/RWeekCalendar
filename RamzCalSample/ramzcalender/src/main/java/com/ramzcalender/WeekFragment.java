@@ -346,7 +346,7 @@ public class WeekFragment extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
 
         /**
-         * Set setCalenderListener when user click on a date
+         * Reset date to first day of week when week goes from the view
          */
 
         if (isVisibleToUser) {
