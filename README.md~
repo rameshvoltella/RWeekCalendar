@@ -1,18 +1,18 @@
-RWeekCalender-Android
+RWeekCalendar-Android
 =================
 
-This is a sample application which displays calender as week view. Each week of the month is displayed. Inspired by ([WeCal App](https://play.google.com/store/apps/details?id=im.ecloud.ecalendar)) 
+This is a sample application which displays Calendar as week view. Each week of the month is displayed. Inspired by ([WeCal App](https://play.google.com/store/apps/details?id=im.ecloud.ecalendar)) 
 
 
 ##Download: 
 
-[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalender.sample)
+[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalendar.sample)
 
 ##Video
 
 [![Video](https://img.youtube.com/vi/gNlkxo7MfNs/0.jpg)](https://www.youtube.com/watch?v=gNlkxo7MfNs)
 
-RWeekCalender: how to use
+RWeekCalendar: how to use
 ------------------------
 
 1. Set Container view in xml
@@ -26,56 +26,56 @@ RWeekCalender: how to use
 ```
 
 
-2. Intialize RWeekCalender
+2. Intialize RWeekCalendar
   
     ```java
-     RWeekCalender rCaldroidFragment=new RWeekCalender();
+     RWeekCalendar rCalendarFragment=new RWeekCalendar();
 ```
-3. Setting RWeekCalender in your view
+3. Setting RWeekCalendar in your view
   
     ```java
 
        FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-       t.replace(R.id.container, rCaldroidFragment);
+       t.replace(R.id.container, rCalendarFragment);
        t.commit();
 ```
 
-4. Adding Custumizable Attributes(Add this Before Setting RWeekCalender)
+4. Adding Custumizable Attributes(Add this Before Setting RWeekCalendar)
   
     ```java
      Bundle args = new Bundle();
 
        /*Should add this attribute if you adding  the NOW_BACKGROUND or DATE_SELECTOR_BACKGROUND Attribute*/
-       args.putString(RWeekCalender.PACKAGENAME,getApplicationContext().getPackageName());
+       args.putString(RWeekCalendar.PACKAGENAME,getApplicationContext().getPackageName());
 
-       /* IMPORTANT: Customization for the calender commenting or un commenting any of the attribute below will reflect change in calender*/
-
-//---------------------------------------------------------------------------------------------------------------------//
-
-      args.putInt(RWeekCalender.CALENDER_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to calender
-
-      args.putString(RWeekCalender.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
-
-      args.putInt(RWeekCalender.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
-
-      args.putString(RWeekCalender.NOW_BACKGROUND,"bg_now");//set background to nowView
-
-      args.putInt(RWeekCalender.CURRENT_DATE_BACKGROUND,ContextCompat.getColor(this,R.color.md_black_1000));//set color to the currentdate
-
-      args.putInt(RWeekCalender.PRIMARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_white_1000));//Set color to the primary views (Month name and dates)
-
-      args.putInt(RWeekCalender.SECONDARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_green_500));//Set color to the secondary views (now view and week names)
+       /* IMPORTANT: Customization for the Calendar commenting or un commenting any of the attribute below will reflect change in Calendar*/
 
 //---------------------------------------------------------------------------------------------------------------------//
 
-       rCaldroidFragment.setArguments(args);
+      args.putInt(RWeekCalendar.Calendar_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to Calendar
+
+      args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
+
+      args.putInt(RWeekCalendar.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
+
+      args.putString(RWeekCalendar.NOW_BACKGROUND,"bg_now");//set background to nowView
+
+      args.putInt(RWeekCalendar.CURRENT_DATE_BACKGROUND,ContextCompat.getColor(this,R.color.md_black_1000));//set color to the currentdate
+
+      args.putInt(RWeekCalendar.PRIMARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_white_1000));//Set color to the primary views (Month name and dates)
+
+      args.putInt(RWeekCalendar.SECONDARY_BACKGROUND, ContextCompat.getColor(this,R.color.md_green_500));//Set color to the secondary views (now view and week names)
+
+//---------------------------------------------------------------------------------------------------------------------//
+
+       rCalendarFragment.setArguments(args);
 ```				
 
-5. Setting listener of the calender
+5. Setting listener of the Calendar
   
     ```java
 
-      CalenderListener listener=new CalenderListener() {
+      CalendarListener listener=new CalendarListener() {
             @Override
            public void onSelectPicker() {
 
@@ -96,7 +96,7 @@ RWeekCalender: how to use
         };
 
         //setting the listener
-        rCaldroidFragment.setCalenderListener(listener);
+        rCalendarFragment.setCalendarListener(listener);
 ```
 
 6. After Date selected from Picker
@@ -107,7 +107,7 @@ RWeekCalender: how to use
         Calendar calendar = Calendar.getInstance();
 
         calendar.set(year, monthOfYear, dayOfMonth);
-        rCaldroidFragment.setDateWeek(calendar);//Should call setDateWeek after getting date
+        rCalendarFragment.setDateWeek(calendar);//Should call setDateWeek after getting date
 ```
 				
 
@@ -115,10 +115,10 @@ RWeekCalender: how to use
    
 Some Screenshots are given below
 <p><b>1.Screen one </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s1.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s1.png" alt="Screenshot one" style="max-width:100%;"></a></p>
+<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s1.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s1.png" alt="Screenshot one" style="max-width:100%;"></a></p>
 
 <p><b>2.Screen one </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s2.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalender/master/Screens/s2.png" alt="Screenshot two" style="max-width:100%;"></a></p>
+<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s2.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s2.png" alt="Screenshot two" style="max-width:100%;"></a></p>
 
 
 

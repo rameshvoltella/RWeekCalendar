@@ -6,7 +6,7 @@ This is a sample application which displays Calendar as week view. Each week of 
 
 ##Download: 
 
-[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzCalendar.sample)
+[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalender.sample)
 
 ##Video
 
