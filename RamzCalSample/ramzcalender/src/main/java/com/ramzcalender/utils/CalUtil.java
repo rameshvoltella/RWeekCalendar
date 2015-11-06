@@ -39,7 +39,7 @@ public class CalUtil {
 
 
     /**
-     * Get the day difference in the selected day and the first day in the week
+     * Get the day difference in the selected day and the first day in the week substring
      *
      * @param dayName
      */
@@ -84,7 +84,8 @@ public class CalUtil {
 
         setStartDate(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.getDayOfMonth());
 
-        int weekGap = CalUtil.mDateGap(currentDateTime.dayOfWeek().getAsShortText().substring(0, 3).toLowerCase());
+        int weekGap = CalUtil.mDateGap(currentDateTime.dayOfWeek().getAsText().substring(0, 3).toLowerCase());
+        Log.d("what",""+currentDateTime.dayOfWeek().getAsText().substring(0, 3).toLowerCase());
 
 
         if (weekGap != 0) {
