@@ -9,8 +9,13 @@ import android.widget.TextView;
 import com.android.datetimepicker.date.DatePickerDialog;
 import com.ramzcalender.RWeekCalendar;
 import com.ramzcalender.listener.CalenderListener;
+import com.ramzcalender.utils.CalUtil;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
+import org.joda.time.MutableDateTime;
+import org.joda.time.ReadWritableDateTime;
+import org.joda.time.Weeks;
 
 import java.util.Calendar;
 
@@ -23,46 +28,72 @@ import java.util.Calendar;
 
 /**
  * Copyright 2014 Paul Stöhr
-Copyright 2013 The Android Open Source Project
+ * Copyright 2013 The Android Open Source Project
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.*/
-
-public class Sample extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class Sample extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     RWeekCalendar rCalendarFragment;
     TextView mDateSelectedTv;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sample);
 
-        mDateSelectedTv=(TextView)findViewById(R.id.txt_date);
+        mDateSelectedTv = (TextView) findViewById(R.id.txt_date);
 
-        rCalendarFragment=new RWeekCalendar();
+
+
+        rCalendarFragment = new RWeekCalendar();
+
+        /*Define you startDate and end Date*/
+        rCalendarFragment.startDate(1989, 9, 1);//Start date
+        rCalendarFragment.endDate(2018, 12, 31);//Ending date
 
         Bundle args = new Bundle();
 
        /*Should add this attribute if you adding  the NOW_BACKGROUND or DATE_SELECTOR_BACKGROUND Attribute*/
-        args.putString(RWeekCalendar.PACKAGENAME,getApplicationContext().getPackageName());
+        args.putString(RWeekCalendar.PACKAGENAME, getApplicationContext().getPackageName());
 
        /* IMPORTANT: Customization for the calender commenting or un commenting any of the attribute below will reflect change in calender*/
 
 //---------------------------------------------------------------------------------------------------------------------//
 
+
+
+        //set Calender type you want if you don't set any normal calender will be set
+        if (getIntent().getExtras().getInt(RWeekCalendar.CALENDER_TYPE) == RWeekCalendar.FDF_CALENDER) {
+
+            /** Set Calender type to FIRSTDAYFIRST (FDF_CALENDER)here
+             * the week days will start as current day as first entry
+             * eg if current day is friday calender start with fri,sat,etc
+             * */
+            args.putInt(RWeekCalendar.CALENDER_TYPE, RWeekCalendar.FDF_CALENDER);
+        } else {
+
+            /**
+             * set Calender type to normal here the week days will
+             * start as normal  be like Sun,Mon etc
+             * */
+            args.putInt(RWeekCalendar.CALENDER_TYPE, RWeekCalendar.NORMAL_CALENDER);
+        }
+
+
 //      args.putInt(RWeekCalender.CALENDER_BACKGROUND, ContextCompat.getColor(this,R.color.md_pink_700));//set background color to calender
 
-        args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
-
-        args.putInt(RWeekCalendar.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
+        args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND, "bg_select");//set background to the selected dates
 
 //        args.putString(RWeekCalender.NOW_BACKGROUND,"bg_now");//set background to nowView
 
@@ -74,6 +105,7 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
 //---------------------------------------------------------------------------------------------------------------------//
 
+
         rCalendarFragment.setArguments(args);
 
         // Attach to the activity
@@ -81,13 +113,13 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
         t.replace(R.id.container, rCalendarFragment);
         t.commit();
 
-        CalenderListener listener=new CalenderListener() {
+        CalenderListener listener = new CalenderListener() {
             @Override
             public void onSelectPicker() {
 
-               //User can use any type of pickers here the below picker is only Just a example
+                //User can use any type of pickers here the below picker is only Just a example
 
-            DatePickerDialog.newInstance(Sample.this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH)).show(getFragmentManager(), "datePicker");
+                DatePickerDialog.newInstance(Sample.this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH)).show(getFragmentManager(), "datePicker");
 
 
             }
@@ -97,7 +129,7 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
                 //callback when a date is selcted
 
-                mDateSelectedTv.setText(""+mSelectedDate.getDayOfMonth()+"-"+mSelectedDate.getMonthOfYear()+"-"+mSelectedDate.getYear());
+                mDateSelectedTv.setText("" + mSelectedDate.getDayOfMonth() + "-" + mSelectedDate.getMonthOfYear() + "-" + mSelectedDate.getYear());
             }
         };
 
@@ -119,4 +151,6 @@ public class Sample extends AppCompatActivity implements DatePickerDialog.OnDate
 
 
     }
+
+
 }

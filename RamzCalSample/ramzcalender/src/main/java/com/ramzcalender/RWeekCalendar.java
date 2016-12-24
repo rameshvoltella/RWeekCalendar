@@ -19,6 +19,7 @@ import com.ramzcalender.listener.CalenderListener;
 import com.ramzcalender.utils.AppController;
 import com.ramzcalender.utils.CalUtil;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.joda.time.Weeks;
 
@@ -26,33 +27,34 @@ import java.util.Calendar;
 
 /**
  * The MIT License (MIT)
-
- Copyright (c) 2015 Ramesh M Nair
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
+ * <p>
+ * Copyright (c) 2015 Ramesh M Nair
+ * <p>
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * <p>
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * <p>
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
  */
 public class RWeekCalendar extends Fragment {
 
 
     //Declaring Variables
 
-    LocalDateTime mStartDate,selectedDate;
+    LocalDateTime mStartDate= new LocalDateTime();
+    LocalDateTime selectedDate = new LocalDateTime();
 
     TextView monthView, nowView, sundayTv, mondayTv, tuesdayTv, wednesdayTv, thursdayTv, fridayTv, saturdayTv;
     ViewPager pager;
@@ -72,26 +74,39 @@ public class RWeekCalendar extends Fragment {
     public static String PRIMARY_BACKGROUND = "bg:primary";
     public static String SECONDARY_BACKGROUND = "bg:secondary";
     public static String PACKAGENAME = "package";
-    public static String WEEKCOUNT = "week:count";
     public static String POSITIONKEY = "pos";
+    public static String CALENDER_TYPE = "cal.type";
 
 
+    //NORMAL CALENDER
+    public static int NORMAL_CALENDER = 0;
+
+    //FIRST DAY FIRST CALENDER
+    public static int FDF_CALENDER = 1;
 
     //initial values of calender property
 
     String selectorDateIndicatorValue = "bg_red";
     int currentDateIndicatorValue = Color.BLACK;
     int primaryTextColor = Color.WHITE;
-    int weekCount=53;//one year
+
     public static String PAKAGENAMEVALUE = "com.ramzcalender";
 
+    //Current weekpostion of current day
+    public static int CURRENT_WEEK_POSITION = 0;
 
+    public static int calenderType = NORMAL_CALENDER;
+
+    //Default will the current date
+    DateTime start=new DateTime();
+    //Default will be 100 more day from the current day
+    DateTime end=start.plusDays(100);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-      //initializing instance
+        //initializing instance
 
         mInstance = this;
 
@@ -122,7 +137,7 @@ public class RWeekCalendar extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-           nowView.setVisibility(View.GONE);
+        nowView.setVisibility(View.GONE);
 
         /**
          * Checking for any customization values
@@ -146,10 +161,9 @@ public class RWeekCalendar extends Fragment {
 
         }
 
-        if (getArguments().containsKey(WEEKCOUNT)) {
-            if(getArguments().getInt(WEEKCOUNT)>0)
-            weekCount = getArguments().getInt(WEEKCOUNT);
+        if (getArguments().containsKey(CALENDER_TYPE)) {
 
+            calenderType = getArguments().getInt(CALENDER_TYPE);
         }
 
         if (getArguments().containsKey(PRIMARY_BACKGROUND)) {
@@ -188,7 +202,74 @@ public class RWeekCalendar extends Fragment {
 
         }
 
-  //----------------------------------------------------------------------------------------------//
+        //----------------------------------------------------------------------------------------------//
+
+
+        /*If the selected calender is FDF Calender the resent the day names according to the starting days*/
+        if (calenderType != NORMAL_CALENDER) {
+            int startingDate = new LocalDateTime().dayOfWeek().get();
+            if (startingDate == 1) {
+
+                sundayTv.setText("Mon");
+                mondayTv.setText("Tue");
+                tuesdayTv.setText("Wed");
+                wednesdayTv.setText("Thu");
+                thursdayTv.setText("Fri");
+                fridayTv.setText("Sat");
+                saturdayTv.setText("Sun");
+
+            } else if (startingDate == 2) {
+
+                sundayTv.setText("Tue");
+                mondayTv.setText("Wed");
+                tuesdayTv.setText("Thu");
+                wednesdayTv.setText("Fri");
+                thursdayTv.setText("Sat");
+                fridayTv.setText("Sun");
+                saturdayTv.setText("Mon");
+
+            } else if (startingDate == 3) {
+
+                sundayTv.setText("Wed");
+                mondayTv.setText("Thu");
+                tuesdayTv.setText("Fri");
+                wednesdayTv.setText("Sat");
+                thursdayTv.setText("Sun");
+                fridayTv.setText("Mon");
+                saturdayTv.setText("Tue");
+
+            } else if (startingDate == 4) {
+
+                sundayTv.setText("Thu");
+                mondayTv.setText("Fri");
+                tuesdayTv.setText("Sat");
+                wednesdayTv.setText("Sun");
+                thursdayTv.setText("Mon");
+                fridayTv.setText("Tue");
+                saturdayTv.setText("Wed");
+
+            } else if (startingDate == 5) {
+
+                sundayTv.setText("Fri");
+                mondayTv.setText("Sat");
+                tuesdayTv.setText("Sun");
+                wednesdayTv.setText("Mon");
+                thursdayTv.setText("Tue");
+                fridayTv.setText("Wed");
+                saturdayTv.setText("Thu");
+
+            } else if (startingDate == 6) {
+
+                sundayTv.setText("Sat");
+                mondayTv.setText("Sun");
+                tuesdayTv.setText("Mon");
+                wednesdayTv.setText("Tue");
+                thursdayTv.setText("Wed");
+                fridayTv.setText("Thu");
+                saturdayTv.setText("Fri");
+
+            }
+        }
 
 
         /*Setting Calender Adaptor*/
@@ -196,21 +277,26 @@ public class RWeekCalendar extends Fragment {
         mAdaptor = new CalenderAdaptor(getActivity().getSupportFragmentManager());
         pager.setAdapter(mAdaptor);
 
+
        /*CalUtil is called*/
 
         CalUtil mCal = new CalUtil();
+        //date calculation called according to the typr
+        if (calenderType != NORMAL_CALENDER) {
+            mCal.calculate(mStartDate, FDF_CALENDER);
+        } else {
+            mCal.calculate(mStartDate, NORMAL_CALENDER);
+        }
 
-        mCal.calculate(getActivity());//date calculation called
-
-        selectedDate = mCal.getSelectedDate();//sets selected from CalUtil
         mStartDate = mCal.getStartDate();//sets start date from CalUtil
 
         //Setting the month name and selected date listener
         monthView.setText(selectedDate.monthOfYear().getAsShortText() + " " + selectedDate.year().getAsShortText().toUpperCase());
-        calenderListener.onSelectDate(mStartDate);
+        calenderListener.onSelectDate(selectedDate);
 
+        CURRENT_WEEK_POSITION = Weeks.weeksBetween(mStartDate, selectedDate).getWeeks();
 
-
+        pager.setCurrentItem(CURRENT_WEEK_POSITION);
         /*Week change Listener*/
 
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -231,10 +317,11 @@ public class RWeekCalendar extends Fragment {
 
                 monthView.setText(selectedDate.monthOfYear().getAsShortText() + "-" + selectedDate.year().getAsShortText().toUpperCase());
 
-                if (weekNumber == 0) {
+                if (weekNumber == CURRENT_WEEK_POSITION) {
 
                     //the first week comes to view
                     nowView.setVisibility(View.GONE);
+
 
                 } else {
 
@@ -260,9 +347,9 @@ public class RWeekCalendar extends Fragment {
             @Override
             public void onClick(View view) {
 
-                calenderListener.onSelectDate(mStartDate);
+                calenderListener.onSelectDate(new LocalDateTime());
 
-                pager.setCurrentItem(0);
+                pager.setCurrentItem(CURRENT_WEEK_POSITION);
 
 
             }
@@ -283,6 +370,7 @@ public class RWeekCalendar extends Fragment {
 
 
     }
+
     /**
      * Set set date of the selected week
      *
@@ -298,15 +386,13 @@ public class RWeekCalendar extends Fragment {
         int nextPage = Weeks.weeksBetween(mStartDate, ldt).getWeeks();
 
 
-        if (nextPage >= 0&&nextPage<weekCount) {
+        if (nextPage >= 0 && nextPage < getWeekBetweenDates(start, end)) {
 
             pager.setCurrentItem(nextPage);
             calenderListener.onSelectDate(ldt);
             WeekFragment fragment = (WeekFragment) pager.getAdapter().instantiateItem(pager, nextPage);
             fragment.ChangeSelector(ldt);
         }
-
-
 
 
     }
@@ -318,9 +404,24 @@ public class RWeekCalendar extends Fragment {
      * @param mSelectedDate
      */
     public void getSelectedDate(LocalDateTime mSelectedDate) {
+        if (pager.getCurrentItem() == CURRENT_WEEK_POSITION) {
+            calenderListener.onSelectDate(new LocalDateTime());
 
-        calenderListener.onSelectDate(mSelectedDate);
+        } else {
+            calenderListener.onSelectDate(mSelectedDate);
+        }
 
+    }
+
+    /*Setting the starting date fom user in put*/
+    public void startDate(int year, int month, int date) {
+        mStartDate = new LocalDateTime(year, month, date, 0, 0, 0, 0);
+        start = new DateTime(year, month, date, 0, 0, 0, 0);
+    }
+
+    /*Setting the ending date fom user in put*/
+    public void endDate(int year, int month, int date) {
+        end = new DateTime(year, month, date, 0, 0, 0, 0);
     }
 
     /**
@@ -343,7 +444,7 @@ public class RWeekCalendar extends Fragment {
 
         @Override
         public int getCount() {
-            return weekCount;
+            return getWeekBetweenDates(start, end);
         }
     }
 
@@ -362,6 +463,13 @@ public class RWeekCalendar extends Fragment {
      */
     public static synchronized RWeekCalendar getInstance() {
         return mInstance;
+    }
+
+    public int getWeekBetweenDates(DateTime start, DateTime end) {
+
+        int diff = Weeks.weeksBetween(start, end).getWeeks();
+        diff = diff + 1;
+        return diff;
     }
 /*
     public void SetPrimaryTypeFace(Typeface mFont) {

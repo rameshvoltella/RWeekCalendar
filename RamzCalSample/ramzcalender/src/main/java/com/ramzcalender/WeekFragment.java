@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,17 +162,19 @@ public class WeekFragment extends Fragment {
         saturdayTv.setText(Integer.toString(dateInWeekArray.get(6).getDayOfMonth()));
 
         /*if the selected week is the current week indicates the current day*/
-
-        if(datePosition==0)
+        if(datePosition==RWeekCalendar.CURRENT_WEEK_POSITION)
        {
 
 
            for(int i=0;i<7;i++)
            {
 
+
                if(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)==dateInWeekArray.get(i).getDayOfMonth())
                {
                    textViewArray[i].setTextColor(currentDateIndicatorValue);
+                   textViewArray[i].setBackgroundResource(selectorDateIndicatorValue);
+                   mDateSelectedBackground(i);
                }
            }
 
@@ -352,22 +355,54 @@ public class WeekFragment extends Fragment {
         if (isVisibleToUser) {
 
             if(dateInWeekArray.size()>0)
-            RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(0));
+                RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(0));
+
 
         }
+        else
+        {
+            if (mSelectedDate != null) {
+                if(RWeekCalendar.calenderType==RWeekCalendar.NORMAL_CALENDER) {
+                    //Resetting the day when current week scrolled or hidden
+                    if (datePosition != RWeekCalendar.CURRENT_WEEK_POSITION) {
+                        textViewArray[0].setBackgroundResource(selectorDateIndicatorValue);
 
+                        textViewArray[1].setBackgroundColor(Color.TRANSPARENT);
+                        textViewArray[2].setBackgroundColor(Color.TRANSPARENT);
+                        textViewArray[3].setBackgroundColor(Color.TRANSPARENT);
+                        textViewArray[4].setBackgroundColor(Color.TRANSPARENT);
+                        textViewArray[5].setBackgroundColor(Color.TRANSPARENT);
+                        textViewArray[6].setBackgroundColor(Color.TRANSPARENT);
+                    } else {
+                        //if the scrolled week is the current week then reset the selection to the current date
 
-            if(mSelectedDate!=null) {
+                        int position = new LocalDateTime().dayOfWeek().get();
+                        textViewArray[position].setBackgroundResource(selectorDateIndicatorValue);
+                        mDateSelectedBackground(position);
+                    }
+                }
+                else
+                {
+                    //if the scrolled week is the current week then reset the selection to the current date for FDFcalender
 
                     textViewArray[0].setBackgroundResource(selectorDateIndicatorValue);
                     textViewArray[1].setBackgroundColor(Color.TRANSPARENT);
-
                     textViewArray[2].setBackgroundColor(Color.TRANSPARENT);
                     textViewArray[3].setBackgroundColor(Color.TRANSPARENT);
                     textViewArray[4].setBackgroundColor(Color.TRANSPARENT);
                     textViewArray[5].setBackgroundColor(Color.TRANSPARENT);
                     textViewArray[6].setBackgroundColor(Color.TRANSPARENT);
                 }
+            }
+
+        }
+
+
+
+
+
+
+
 
 
     }

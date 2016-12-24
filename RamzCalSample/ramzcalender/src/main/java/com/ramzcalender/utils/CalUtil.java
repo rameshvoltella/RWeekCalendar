@@ -1,13 +1,11 @@
 package com.ramzcalender.utils;
 
-import android.content.Context;
-import android.util.Log;
 
-import net.danlew.android.joda.JodaTimeAndroid;
+
+import com.ramzcalender.RWeekCalendar;
 
 import org.joda.time.LocalDateTime;
 
-import java.util.Calendar;
 
 
 /**
@@ -38,15 +36,15 @@ public class CalUtil {
     LocalDateTime mStartDate,selectedDate;
 
 
+
     /**
      * Get the day difference in the selected day and the first day in the week 
      *
      * @param dayName
      */
     public static int mDateGap(String dayName) {
-        Log.d("dayname",dayName);
 
-        if (dayName.equals("mon")) {
+       if (dayName.equals("mon")) {
             return 1;
         } else if (dayName.equals("tue")) {
             return 2;
@@ -71,16 +69,77 @@ public class CalUtil {
     /**
      * Initial calculation of the week
      *
-     * @param mContext
+     * @param mStartDate
      */
-    public void calculate(Context mContext)
+    public void calculate(LocalDateTime mStartDate,int type)
     {
 
-        //Initializing JodaTime
-        JodaTimeAndroid.init(mContext);
-
         //Initializing Start with current month
-        final LocalDateTime currentDateTime = new LocalDateTime();
+        final LocalDateTime currentDateTime = mStartDate;
+
+        setStartDate(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.getDayOfMonth());
+
+        /*Check for difference of weeks for alignment of days*/
+        int weekGap = CalUtil.mDateGap(currentDateTime.dayOfWeek().getAsText().substring(0, 3).toLowerCase());
+
+
+
+        if (weekGap != 0) {
+
+            //If the there is week gap we need to maintain in the calender else alignment will be a mess
+
+            if(type== RWeekCalendar.FDF_CALENDER) {
+                //If the  week gap is in FDF calender first get the current days number of the week
+                int currentWeekNumber=new LocalDateTime().dayOfWeek().get();
+                //Subtract it with the rest of the days(Week gap) to get the rest of the days
+                weekGap = weekGap - currentWeekNumber;
+            }
+
+            //This will add the additional days
+            LocalDateTime ldt=mStartDate.minusDays(weekGap);
+
+           // Set the the new startDate after new calculated days
+            setStartDate(ldt.getYear(), ldt.getMonthOfYear(), ldt.getDayOfMonth());
+
+
+
+        }
+
+        else
+        {
+
+            //Some times the week gap will be zero in that case If the selected calender is FDFCalender
+            if(type== RWeekCalendar.FDF_CALENDER) {
+
+                //Subtract total days of week (7) with the week day number of current date
+
+                int currentWeekNumber=7-new LocalDateTime().dayOfWeek().get();
+
+                if(currentWeekNumber!=0)
+                {
+
+                    // Set the the new startDate after new calculated days
+
+                    LocalDateTime ldt=mStartDate.minusDays(currentWeekNumber);
+                    setStartDate(ldt.getYear(), ldt.getMonthOfYear(), ldt.getDayOfMonth());
+                }
+
+            }
+        }
+    }
+
+/*    *//**
+     * Initial calculation of the week
+     *
+     * @param
+     *//*
+    public void calculate(Context mContext,LocalDateTime currentDateTime)
+    {
+
+
+
+//        //Initializing Start with current month
+//        final LocalDateTime currentDateTime = new LocalDateTime();
 
         setStartDate(currentDateTime.getYear(), currentDateTime.getMonthOfYear(), currentDateTime.getDayOfMonth());
 
@@ -90,7 +149,7 @@ public class CalUtil {
         if (weekGap != 0) {
             //if the current date is not the first day of the week the rest of days is added
 
-            //Calendar set to the current date
+          *//*  //Calendar set to the current date
             Calendar calendar = Calendar.getInstance();
 
             calendar.add(Calendar.DAY_OF_YEAR, -weekGap);
@@ -100,12 +159,14 @@ public class CalUtil {
 
             LocalDateTime ldt = LocalDateTime.fromCalendarFields(calendar);
 
+*//*
+            LocalDateTime ldt=currentDateTime.minusDays(weekGap);
             setStartDate(ldt.getYear(), ldt.getMonthOfYear(), ldt.getDayOfMonth());
 
 
 
         }
-    }
+    }*/
 
 
 /*Set The Start day (week)from calender*/
@@ -120,14 +181,19 @@ public class CalUtil {
 
 
 
-    public LocalDateTime getSelectedDate()
+ /*   public LocalDateTime getSelectedDate()
     {
         return selectedDate;
-    }
+    }*/
 
 
     public LocalDateTime getStartDate()
     {
         return mStartDate;
     }
+
+
+
+
+
 }

@@ -1,12 +1,21 @@
 RWeekCalendar-Android
 =================
 
+### Build status
+
+**develop** [![master](https://api.travis-ci.org/rameshvoltella/RWeekCalendar.svg?branch=master)](https://travis-ci.org/rameshvoltella/RWeekCalendar)
+
+
 This is a sample application which displays Calendar as week view. Each week of the month is displayed. Inspired by ([WeCal App](https://play.google.com/store/apps/details?id=im.ecloud.ecalendar)) 
+
 
 
 ##Download: 
 
-[![Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalender.sample)
+[![Old Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/playstore.png)](https://play.google.com/store/apps/details?id=com.ramzcalender.sample)
+
+
+[![New Apk Here:](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/playstore.png)](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/apk/v4.apk)
 
 ##Video
 
@@ -31,7 +40,15 @@ RWeekCalendar: how to use
     ```java
      RWeekCalendar rCalendarFragment=new RWeekCalendar();
 ```
-3. Setting RWeekCalendar in your view
+
+3. Set the start date and end date 
+  
+    ```java
+     rCalendarFragment.startDate(1989, 9, 1);//Start date
+     rCalendarFragment.endDate(2018, 12, 31);//Ending date
+```
+
+4. Setting RWeekCalendar in your view
   
     ```java
 
@@ -40,7 +57,7 @@ RWeekCalendar: how to use
        t.commit();
 ```
 
-4. Adding Custumizable Attributes(Add this Before Setting RWeekCalendar)
+5. Adding Custumizable Attributes(Add this Before Setting RWeekCalendar)
   
     ```java
      Bundle args = new Bundle();
@@ -56,8 +73,6 @@ RWeekCalendar: how to use
 
       args.putString(RWeekCalendar.DATE_SELECTOR_BACKGROUND,"bg_select");//set background to the selected dates
 
-      args.putInt(RWeekCalendar.WEEKCOUNT,1000);//add N weeks from the current week (53 or 52 week is one year)
-
       args.putString(RWeekCalendar.NOW_BACKGROUND,"bg_now");//set background to nowView
 
       args.putInt(RWeekCalendar.CURRENT_DATE_BACKGROUND,ContextCompat.getColor(this,R.color.md_black_1000));//set color to the currentdate
@@ -71,7 +86,7 @@ RWeekCalendar: how to use
        rCalendarFragment.setArguments(args);
 ```				
 
-5. Setting listener of the Calendar
+6. Setting listener of the Calendar
   
     ```java
 
@@ -99,7 +114,7 @@ RWeekCalendar: how to use
         rCalendarFragment.setCalendarListener(listener);
 ```
 
-6. After Date selected from Picker
+7. After Date selected from Picker
   
     ```java
 
