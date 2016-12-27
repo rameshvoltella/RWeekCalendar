@@ -403,9 +403,15 @@ public class RWeekCalendar extends Fragment {
      *
      * @param mSelectedDate
      */
-    public void getSelectedDate(LocalDateTime mSelectedDate) {
+    public void getSelectedDate(LocalDateTime mSelectedDate,boolean fromUservisblity) {
         if (pager.getCurrentItem() == CURRENT_WEEK_POSITION) {
-            calenderListener.onSelectDate(new LocalDateTime());
+            if(fromUservisblity==true) {
+                calenderListener.onSelectDate(new LocalDateTime());
+            }
+            else
+            {
+                calenderListener.onSelectDate(mSelectedDate);
+            }
 
         } else {
             calenderListener.onSelectDate(mSelectedDate);

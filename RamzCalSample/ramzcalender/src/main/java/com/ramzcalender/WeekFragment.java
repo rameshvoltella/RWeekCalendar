@@ -312,7 +312,7 @@ public class WeekFragment extends Fragment {
      */
     public void mSelectedDateInfo(int position)
     {
-        RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(position));
+        RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(position),false);
 
         mSelectedDate=dateInWeekArray.get(position);
 
@@ -355,7 +355,7 @@ public class WeekFragment extends Fragment {
         if (isVisibleToUser) {
 
             if(dateInWeekArray.size()>0)
-                RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(0));
+                RWeekCalendar.getInstance().getSelectedDate(dateInWeekArray.get(0),true);
 
 
         }
