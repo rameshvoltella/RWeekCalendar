@@ -24,6 +24,32 @@ This is a sample application which displays Calendar as week view. Each week of 
 
 [![Video](https://img.youtube.com/vi/gNlkxo7MfNs/0.jpg)](https://www.youtube.com/watch?v=gNlkxo7MfNs)
 
+
+
+# Gradle
+--------
+
+
+/build.gradle
+```groovy
+allprojects {
+	repositories {
+		jcenter()
+		maven { url "https://jitpack.io" }
+	}
+}
+```
+
+Then add the dependency to your module's build.gradle:
+
+/app/build.gradle
+```groovy
+compile 'com.github.rameshvoltella:RWeekCalendar:0.1.0'
+```
+
+
+
+
 RWeekCalendar: how to use
 ------------------------
 
