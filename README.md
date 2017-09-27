@@ -28,7 +28,7 @@ This is a sample application which displays Calendar as week view. Each week of 
 
 # Gradle
 --------
-
+[![](https://jitpack.io/v/rameshvoltella/RWeekCalendar.svg)](https://jitpack.io/#rameshvoltella/RWeekCalendar)
 
 /build.gradle
 ```groovy
