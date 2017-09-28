@@ -48,6 +48,12 @@ compile 'com.github.rameshvoltella:RWeekCalendar:0.1.0'
 ```
 
 
+![sample_screen1](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s1.png)
+
+![sample_screen1](https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s2.png)
+
+
+
 
 
 RWeekCalendar: how to use
@@ -157,12 +163,7 @@ RWeekCalendar: how to use
 
     
    
-Some Screenshots are given below
-<p><b>1.Screen one </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s1.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s1.png" alt="Screenshot one" style="max-width:100%;"></a></p>
 
-<p><b>2.Screen one </b></p>
-<p><a href="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s2.png" target="_blank"><img src="https://raw.githubusercontent.com/rameshvoltella/RWeekCalendar/master/Screens/s2.png" alt="Screenshot two" style="max-width:100%;"></a></p>
 
 
 
